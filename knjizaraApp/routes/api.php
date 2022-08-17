@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/proizvodi',[ProizvodController::class,'index']);
 Route::get('/proizvodi/{id}',[ProizvodController::class,'show']);
 
-
+Route::post('/proizvodi',[ProizvodController::class,'store']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
