@@ -121,8 +121,14 @@ class ProizvodController extends Controller
      * @param  \App\Models\Proizvod  $proizvod
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proizvod $proizvod)
+    public function destroy($id)
     {
-        //
+        $p = Proizvod::find($id);
+        if($p){
+            $p->delete();
+            return response()->json("Objekat uspesno obrisan");
+        }else{
+            return response()->json("Objekat ne postoji u bazi");
+        }
     }
 }
