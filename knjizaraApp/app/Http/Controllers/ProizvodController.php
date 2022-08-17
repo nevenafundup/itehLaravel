@@ -88,9 +88,31 @@ class ProizvodController extends Controller
      * @param  \App\Models\Proizvod  $proizvod
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proizvod $proizvod)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'naziv' => 'string|max:15',
+            'opis' => 'string|max:100',
+            'cena' => '', 
+            'kategorija' => '',
+             
+             
+        ]);
+
+        if ($validator->fails()) 
+            return response()->json($validator->errors());
+        $p = Proizvod::find($id);
+        if($p){
+            $p->naziv=$request->naziv;
+            $p->opis=$request->opis;
+            $p->cena=$request->cena;
+            $p->kategorija=$request->kategorija;
+            $p->save();
+            return response()->json( ["Uspesno izmenjeno!",new ProizvodResource($p)]);
+        }else{
+            return response()->json("Objekat ne postoji u bazi");
+        }
+   
     }
 
     /**

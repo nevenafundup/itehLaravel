@@ -23,7 +23,7 @@ Route::get('/proizvodi',[ProizvodController::class,'index']);
 Route::get('/proizvodi/{id}',[ProizvodController::class,'show']);
 
 Route::post('/proizvodi',[ProizvodController::class,'store']);
-
+Route::put('/proizvodi/{id}',[ProizvodController::class,'update']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
