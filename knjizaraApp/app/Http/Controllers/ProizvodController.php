@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProizvodResource;
 use App\Models\Proizvod;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ProizvodController extends Controller
      */
     public function index()
     {
-        return Proizvod::all();
+        return ProizvodResource::collection(Proizvod::all());
     }
 
     /**
@@ -46,7 +47,7 @@ class ProizvodController extends Controller
      */
     public function show($id)
     {
-        return Proizvod::find($id);
+        return new ProizvodResource(Proizvod::find($id));
     }
 
     /**

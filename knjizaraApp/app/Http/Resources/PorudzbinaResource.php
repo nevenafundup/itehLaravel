@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Proizvod;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PorudzbinResource extends JsonResource
+class PorudzbinaResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,6 +15,11 @@ class PorudzbinResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return  [
+            'proizvod'=> new ProizvodResource(Proizvod::find($this->resource->proizvod)),
+            'kolicina'=>$this->resource->kolicina,
+        
+
+        ];
     }
 }

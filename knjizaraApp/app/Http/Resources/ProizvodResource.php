@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Kategorija;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProizvodResource extends JsonResource
@@ -14,6 +15,15 @@ class ProizvodResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return  
+        [
+            'id'=>$this->resource->id,
+            'naziv'=>$this->resource->naziv,
+            'opis'=>$this->resource->opis,
+            'cena'=>$this->resource->cena,
+            'kategorija'=>new KategorijaResource(Kategorija::find($this->resource->kategorija)),
+
+            
+        ];
     }
 }
