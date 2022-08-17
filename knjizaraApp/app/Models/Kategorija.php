@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Kategorija extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'naziv'
+    ];
+    public function proizvod()
+    {
+        return $this->hasMany(Proizvod::class);
+    }
 }
